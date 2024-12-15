@@ -1,5 +1,8 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constant/color.dart';
+import 'package:flutter_application_1/view/screens/auth/forget_password_screen.dart';
 import 'package:flutter_application_1/view/screens/auth/signup_screen.dart';
 import 'package:flutter_application_1/view/screens/home_screen.dart';
 
@@ -19,7 +22,9 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         title: const Text(
           'تسجيل الدخول',
@@ -158,14 +163,14 @@ class _LoginScreenState extends State<LoginScreen> {
         TextButton(
           onPressed: () {
             Navigator.of(context).push(
-              MaterialPageRoute(builder: (ctx) => const HomeScreen()),
+              MaterialPageRoute(builder: (ctx) => const ForgotPasswordScreen()),
             );
           },
           child: const Text(
             'نسيت كلمة المرور؟',
             style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
               color: maincolor,
             ),
           ),
@@ -174,32 +179,44 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  // Refactored method for login button
+  // Refactored method for login button with gradient
   Widget _buildLoginButton() {
-    return ElevatedButton(
-      onPressed: () {
-        if (_formKey.currentState?.validate() ?? false) {
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (ctx) => const HomeScreen()),
-          );
-        }
-      },
-      style: ElevatedButton.styleFrom(
-        backgroundColor: maincolor,
-        padding: const EdgeInsets.symmetric(
-          vertical: 15,
-          horizontal: 140,
+    return Container(
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: GradientColors, // Replace with your GradientColors
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
         ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
+        borderRadius: BorderRadius.circular(12), // Match button's border radius
       ),
-      child: const Text(
-        'تسجيل الدخول',
-        style: TextStyle(
-          fontSize: 17,
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
+      child: ElevatedButton(
+        onPressed: () {
+          if (_formKey.currentState?.validate() ?? false) {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (ctx) => const HomeScreen()),
+            );
+          }
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor:
+              Colors.transparent, // Transparent to show the gradient
+          shadowColor: Colors.transparent, // Remove shadow
+          padding: const EdgeInsets.symmetric(
+            vertical: 20,
+            horizontal: 80,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12), // Rounded corners
+          ),
+        ),
+        child: const Text(
+          'تسجيل الدخول',
+          style: TextStyle(
+            fontSize: 20,
+            color: Colors.white,
+            fontWeight: FontWeight.w500,
+          ),
         ),
       ),
     );
@@ -217,7 +234,7 @@ class _LoginScreenState extends State<LoginScreen> {
         TextButton(
           onPressed: () {
             Navigator.of(context).push(
-              MaterialPageRoute(builder: (ctx) => SignupScreen()),
+              MaterialPageRoute(builder: (ctx) => const SignUpScreen()),
             );
           },
           child: const Text(
