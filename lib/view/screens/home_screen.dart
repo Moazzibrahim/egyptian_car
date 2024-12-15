@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constant/color.dart';
+import 'package:flutter_application_1/view/screens/order/session_details_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -100,13 +101,18 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 50),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                'المصرية',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: maincolor,
-                ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    'المصرية',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: maincolor,
+                    ),
+                  ),
+                ],
               ),
             ),
             const Divider(),
@@ -124,6 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
+
       body: _buildBody(),
     );
   }
@@ -144,14 +151,12 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // Body content
   Widget _buildBody() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Month navigation
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -174,7 +179,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
           const SizedBox(height: 15),
-          // Days of the week
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: List.generate(daysOfWeek.length, (index) {
@@ -269,9 +273,15 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           const SizedBox(height: 20),
-          // Booking button
           ElevatedButton.icon(
-            onPressed: selectedTimeIndex != -1 ? () {} : null,
+            onPressed: selectedTimeIndex != -1
+                ? () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                          builder: (ctx) => const SessionDetailsScreen()),
+                    );
+                  }
+                : null,
             style: ElevatedButton.styleFrom(
               backgroundColor: maincolor,
               minimumSize: const Size(double.infinity, 50),

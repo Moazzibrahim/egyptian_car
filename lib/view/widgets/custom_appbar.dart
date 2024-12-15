@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constant/color.dart';
 
-AppBar buildAppBar(BuildContext context, String title){
+AppBar buildAppBar(BuildContext context, String title) {
   return AppBar(
-    title: Text(title,style: const TextStyle(fontSize: 24,fontWeight: FontWeight.w600),),
+    backgroundColor: Colors.white,
+    title: Text(
+      title,
+      style: const TextStyle(
+          fontSize: 24, fontWeight: FontWeight.w600, color: maincolor),
+    ),
     centerTitle: true,
     leading: GestureDetector(
       onTap: () {
@@ -17,7 +22,11 @@ AppBar buildAppBar(BuildContext context, String title){
           color: Colors.white,
           borderRadius: BorderRadius.circular(14),
         ),
-        child: const Center(child: Icon(Icons.arrow_back_ios,color: maincolor,)),
+        child: const Center(
+            child: Icon(
+          Icons.arrow_back_ios,
+          color: maincolor,
+        )),
       ),
     ),
   );
